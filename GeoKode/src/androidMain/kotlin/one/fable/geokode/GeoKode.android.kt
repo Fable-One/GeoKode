@@ -19,36 +19,36 @@ actual class GeoKode(private val context: Context, private val maxResults: Int =
      *
      * By instantiating in a global object, we ensure that the GeoApiContext is a singleton.
      */
-//    private val geoApiContext: GeoApiContext = GeoApiContext.Builder()
-//        .apiKey(placesApiKey?.trim())
-//        .build()
-
-
     //TODO - Get location from coordinates
+
     actual suspend fun getLocation(address: List<String>): List<Location>? {
+        //Concatenate the address fields into a single string to be used for geocoding query
+        val searchAddress = address.joinToString(" ")
+        return getLocation(searchAddress)
+    }
+
+    actual suspend fun getLocation(address: String): List<Location>? {
         return try {
             //Check if we are online before attempting to get a geocode
             //if (!ConnectivityCheckHelper.isOnline()) return null
 
-            //Concatenate the address fields into a single string to be used for geocoding query
-            val searchAddress = address.joinToString(" ")
+
 
             //If the address is blank, no use in trying to get a geocode
-            if (searchAddress.isBlank()) return null
+            if (address.isBlank()) return null
 
             val geocoder = Geocoder(context)
 
 
             return withContext(Dispatchers.IO) {
                 //First attempt to get the geocode from the Geocoder class
-                getGeocodeFromGeocoder(geocoder, searchAddress)?.let {
+                getGeocodeFromGeocoder(geocoder, address)?.let {
                     return@let it
                 }
             }
 
-//
-//                //Fall back to using the Google Places Geocode API
-//                return@withContext getGeocodeFromPlacesApi(invoiceAddress)
+            //TODO - Fall back to using the Google Places Geocode API
+
         } catch (e: Exception) {
             println(e)
             null
@@ -109,4 +109,6 @@ actual class GeoKode(private val context: Context, private val maxResults: Int =
     actual fun setPlacesApiKey(apiKey: String) {
         placesApiKey = apiKey
     }
+
+
 }
