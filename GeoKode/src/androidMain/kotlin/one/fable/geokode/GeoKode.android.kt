@@ -8,9 +8,7 @@ import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-actual class GeoKode(private val context: Context, private val maxResults: Int = 1) {
-    private var placesApiKey: String? = null
-
+actual class GeoKode(private val context: Context, private val maxResults: Int = 5) {
     /**
      * Note: The GeoApiContext is designed to be a Singleton in your application.
      * Please instantiate one on application startup, and continue to use it for the life of your application.
@@ -19,7 +17,6 @@ actual class GeoKode(private val context: Context, private val maxResults: Int =
      *
      * By instantiating in a global object, we ensure that the GeoApiContext is a singleton.
      */
-    //TODO - Get location from coordinates
 
     actual suspend fun getLocation(address: List<String>): List<Location>? {
         //Concatenate the address fields into a single string to be used for geocoding query
@@ -105,10 +102,4 @@ actual class GeoKode(private val context: Context, private val maxResults: Int =
             null
         }
     }
-
-    actual fun setPlacesApiKey(apiKey: String) {
-        placesApiKey = apiKey
-    }
-
-
 }

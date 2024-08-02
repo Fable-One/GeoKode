@@ -57,13 +57,5 @@ actual class GeoKode {
         }
 
         return deferred.await()
-        }
-
-    actual fun setPlacesApiKey(apiKey: String) {
     }
-
-
 }
-
-//    actual fun setPlacesApiKey(apiKey: String) {
-//    }
