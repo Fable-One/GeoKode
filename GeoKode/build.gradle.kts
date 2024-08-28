@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "one.fable"
-version = "1.0"
+version = "0.1.0-alpha01"
 
 kotlin {
     androidTarget {
@@ -14,7 +14,7 @@ kotlin {
                 jvmTarget = "1.8"
             }
         }
-        publishLibraryVariants("release", "debug")
+        publishLibraryVariants("release")
     }
     
     listOf(
@@ -56,12 +56,14 @@ dependencies {
 }
 
 publishing {
-    publications {
-        create<MavenPublication>("maven") {
-            from(components["kotlin"])
-            groupId = "one.fable"
-            artifactId = "geokode"
-            version = "1.0.0"
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/devinduricka/geokode")
+            credentials {
+                username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
+            }
         }
     }
 }
