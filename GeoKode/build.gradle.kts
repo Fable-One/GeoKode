@@ -65,13 +65,5 @@ publishing {
                 password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
             }
         }
-        publications {
-            create<MavenPublication>("release") {
-                from(components["kotlin"])
-                groupId = "one.fable"
-                artifactId = "geokode"
-                version = "0.1.0-alpha01"
-            }
-        }
     }
 }
