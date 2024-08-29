@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "GeoKodeMultiplatform"
-include(":GeoKode")
+rootProject.name = "geokode"
+include(":geokode")
