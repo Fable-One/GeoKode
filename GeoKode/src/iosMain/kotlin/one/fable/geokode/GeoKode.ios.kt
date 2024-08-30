@@ -49,6 +49,8 @@ actual class GeoKode {
                         Location(
                             latitude = location.coordinate.useContents { latitude },
                             longitude = location.coordinate.useContents { longitude },
+                            hasLatitude = location.coordinate.useContents { latitude != 0.0 },
+                            hasLongitude = location.coordinate.useContents { longitude != 0.0 },
                             featureName = placemark.name,
                             locality = placemark.locality,
                             thoroughfare = placemark.thoroughfare,
