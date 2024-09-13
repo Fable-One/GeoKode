@@ -24,4 +24,19 @@ expect class GeoKode {
 
     //TODO - Implement Google Places API as either fallback or primary
     //fun setPlacesApiKey(apiKey: String)
+
+    /**
+     * Performs an auto search for the given address string using MKLocalSearch and MKLocalSearchCompleter (iOS).
+     * On Android this method just uses the Geocoder class via getLocation().
+     *
+     * @param address A single address string.
+     * @return A list of Location objects representing the search results, or null if the search fails.
+     */
+    suspend fun autoSearchAddress(
+        address: String,
+        userLatitude: Double?,
+        userLongitude: Double?
+    ): List<Location>?
+
+
 }

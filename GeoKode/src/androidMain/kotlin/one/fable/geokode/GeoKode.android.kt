@@ -110,4 +110,8 @@ actual class GeoKode(private val context: Context, private val maxResults: Int =
             null
         }
     }
+
+    actual suspend fun autoSearchAddress(address: String, userLatitude: Double?, userLongitude: Double?): List<Location>? {
+        return getLocation(address)
+    }
 }
