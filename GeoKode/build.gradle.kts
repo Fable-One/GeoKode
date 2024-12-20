@@ -66,4 +66,10 @@ publishing {
             }
         }
     }
+
+    publications {
+        // Creates a Maven publication for each target
+        withType<MavenPublication> { } 
+    }
+
 }
